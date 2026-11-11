@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohith S | Full-Stack Developer & AI Enthusiast</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons for glowing social buttons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js CDN for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP for Smooth Scroll Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Vanilla Tilt for 3D Card Hover Effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; color: #f3f4f6; overflow-x: hidden; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+        .glass-card { background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.15); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
+        .glass-card:hover { border-color: rgba(56, 189, 248, 0.5); box-shadow: 0 20px 40px rgba(56, 189, 248, 0.15); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Glowing Accent Styles */
+        .glow-btn {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+        .glow-btn:hover {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), 0 0 40px rgba(129, 140, 248, 0.4);
+            transform: translateY(-2px);
+        }
+        .glow-icon {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+        .glow-icon:hover {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
+            color: #38bdf8;
+            transform: translateY(-2px);
+        }
+
+        /* Profile Image Glow */
+        .profile-glow {
+            border: 4px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.5);
+            transition: all 0.4s ease-in-out;
+        }
+        .profile-glow:hover {
+            box-shadow: 0 0 60px rgba(56, 189, 248, 0.9), 0 0 90px rgba(129, 140, 248, 0.6);
+            transform: scale(1.03) translateY(-4px);
+        }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-black">
+
+    <!-- 3D Three.js Background Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-gray-950/70 backdrop-blur-md border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-xl font-extrabold tracking-wider gradient-text">ROHITH S</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#faq" class="hover:text-cyan-400 transition-colors">FAQ</a>
+                <a href="#contact" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 text-gray-950 font-bold hover:opacity-90 transition-opacity shadow-lg shadow-cyan-500/20">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-24 px-6 relative">
+        <div class="max-w-4xl mx-auto text-center z-10 flex flex-col items-center">
+            
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-8 inline-block">
+                Full-Stack & AI Systems Engineer
+            </span>
+
+            <!-- Round Glowing Profile Image -->
+            <img src="profile.jpeg" alt="Rohith S Profile" class="w-48 h-48 rounded-full profile-glow object-cover mb-6">
+
+            <!-- Name with Gradient -->
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 gradient-text">
+                ROHITH S
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                ECE Student @ RIT Chennai | Protothon Hackathon Finalist | Full-stack developer engineering robust cloud-backed applications, automated workflows, and immersive digital solutions.
+            </p>
+            
+            <!-- Hero Action Buttons & Social Links -->
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="#projects" class="px-8 py-4 rounded-full bg-cyan-500 text-gray-950 font-bold hover:bg-cyan-400 transition-all shadow-xl shadow-cyan-500/25">
+                    Explore Projects
+                </a>
+                
+                <!-- Glowing Resume Button -->
+                <a href="https://drive.google.com/file/d/16TUe3HAY1GDw9kkp0zeU18IQseLw9ESQ/view?usp=sharing" target="_blank" class="glow-btn px-8 py-4 rounded-full border border-cyan-400/50 bg-gray-900/80 text-cyan-300 font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-file-arrow-down"></i> Resume
+                </a>
+
+                <!-- Glowing LinkedIn Icon Link -->
+                <a href="https://www.linkedin.com/in/rohith-s2006/" target="_blank" class="glow-icon w-14 h-14 rounded-full border border-cyan-400/50 bg-gray-900/80 text-gray-300 flex items-center justify-center text-xl" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <!-- Glowing GitHub Icon Link -->
+                <a href="https://github.com/rohith-s2006" target="_blank" class="glow-icon w-14 h-14 rounded-full border border-cyan-400/50 bg-gray-900/80 text-gray-300 flex items-center justify-center text-xl" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-28 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-2">Get To Know Me</p>
+            <h2 class="text-4xl font-extrabold">About Me</h2>
+        </div>
+        <div class="glass-card p-8 md:p-12 rounded-3xl grid md:grid-cols-3 gap-8 items-center">
+            <div class="md:col-span-2 space-y-6 text-gray-300 leading-relaxed text-base md:text-lg">
+                <p>
+                    I am pursuing a Bachelor of Engineering in <strong class="text-cyan-400">Electronics and Communication Engineering</strong> at Rajalakshmi Institute of Technology (RIT Chennai) for the 2024–2028 academic tenure. Alongside my core engineering curriculum, I completed intensive full-stack software development training through <strong class="text-indigo-400">NxtWave CCBP 4.0</strong>.
+                </p>
+                <p>
+                    My core expertise revolves around modern web stacks (React, Next.js, Node.js, Express, MongoDB, SQL) and Python-based automation pipelines. I thrive on translating complex technical requirements into seamless, lightning-fast user experiences.
+                </p>
+            </div>
+            <div class="space-y-4 bg-gray-900/50 p-6 rounded-2xl border border-gray-800">
+                <h3 class="text-xl font-bold text-cyan-400">Core Tech Stack</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full text-xs bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Python</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">C++</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">JavaScript</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">TypeScript</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">React.js</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Next.js</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Node.js</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Express.js</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">MongoDB</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">SQL / Supabase</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">Tailwind CSS</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">Bootstrap</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">HTML/CSS</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">Git</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">RESTful API</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">Testing</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">De-Bugging</span>
+                    <span class="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20">SMTP</span>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Achievements -->
+    <section id="experience" class="py-28 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-2">Milestones</p>
+            <h2 class="text-4xl font-extrabold">Experience & Achievements</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="glass-card p-8 rounded-3xl" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                <div class="text-cyan-400 text-3xl mb-4"></div>
+                <h3 class="text-2xl font-bold mb-3">Protothon Inter-College Hackathon Finalist</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    Achieved finalist standing in a competitive inter-college hackathon event, demonstrating high-velocity team collaboration, rapid prototyping, and full-stack software architecture execution under strict deadlines.
+                </p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                <div class="text-indigo-400 text-3xl mb-4"></div>
+                <h3 class="text-2xl font-bold mb-3">Academic & Professional Training</h3>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    <strong class="text-white">B.E. in ECE</strong> — Rajalakshmi Institute of Technology (2024–2028). Focused on embedded systems, software algorithms, and intelligent device integration.
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    <strong class="text-white">NxtWave CCBP 4.0</strong> — Comprehensive full-stack software development training program emphasizing real-world production deployments.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (Dynamic MongoDB Fetch) -->
+    <section id="projects" class="py-28 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-2">Portfolio</p>
+            <h2 class="text-4xl font-extrabold">Featured Projects</h2>
+        </div>
+        <div id="project-container" class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <!-- Dynamically populated via backend API -->
+            <div class="glass-card p-8 rounded-3xl animate-pulse text-center py-20 text-gray-500">
+                Loading projects from MongoDB server...
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / Interactive Question Box -->
+    <section id="faq" class="py-28 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-2">Inquiries</p>
+            <h2 class="text-4xl font-extrabold">Frequently Asked Questions</h2>
+        </div>
+        <div class="space-y-4">
+            <details class="glass-card p-6 rounded-2xl cursor-pointer group">
+                <summary class="font-bold text-lg text-white flex justify-between items-center">
+                    Are you open to software engineering internships?
+                    <span class="text-cyan-400 group-open:rotate-180 transition-transform">↓</span>
+                </summary>
+                <p class="mt-4 text-gray-400 leading-relaxed">
+                    Yes! I am actively seeking software engineering, full-stack development, and AI automation internships in Chennai, Coimbatore, or remote setups.
+                </p>
+            </details>
+            <details class="glass-card p-6 rounded-2xl cursor-pointer group">
+                <summary class="font-bold text-lg text-white flex justify-between items-center">
+                    What technologies do you primarily use?
+                    <span class="text-cyan-400 group-open:rotate-180 transition-transform">↓</span>
+                </summary>
+                <p class="mt-4 text-gray-400 leading-relaxed">
+                    I build full-stack applications using React, Next.js, Node.js, Express, MongoDB Atlas, and SQL, alongside Python utilities for automation and data extraction.
+                </p>
+            </details>
+            <details class="glass-card p-6 rounded-2xl cursor-pointer group">
+                <summary class="font-bold text-lg text-white flex justify-between items-center">
+                    How can I get in touch with you directly?
+                    <span class="text-cyan-400 group-open:rotate-180 transition-transform">↓</span>
+                </summary>
+                <p class="mt-4 text-gray-400 leading-relaxed">
+                    You can fill out the contact form below or reach out via my LinkedIn and GitHub profiles. I respond promptly!
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Contact Section & Message Box -->
+    <section id="contact" class="py-28 px-6 max-w-3xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-2">Get in Touch</p>
+            <h2 class="text-4xl font-extrabold">Send a Message</h2>
+        </div>
+        <div class="glass-card p-8 md:p-12 rounded-3xl">
+            <!-- Web3Forms direct email delivery pipeline -->
+            <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" class="space-y-6">
+                <!-- Replace YOUR_WEB3FORMS_ACCESS_KEY_HERE with your key from web3forms.com -->
+                <input type="hidden" name="access_key" value="c4cabda2-0d13-461d-b718-b50ced942390">
+                <input type="hidden" name="subject" value="New Portfolio Contact Message from Your Portfolio">
+                <input type="hidden" name="from_name" value="Portfolio Contact Form">
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">Your Name</label>
+                    <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl bg-gray-900/80 border border-gray-800 text-white focus:border-cyan-400 focus:outline-none transition-colors" placeholder="Enter your name">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">Your Email</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl bg-gray-900/80 border border-gray-800 text-white focus:border-cyan-400 focus:outline-none transition-colors" placeholder="Enter your email">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">Your Question / Message</label>
+                    <textarea name="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-gray-900/80 border border-gray-800 text-white focus:border-cyan-400 focus:outline-none transition-colors" placeholder="Type your question or message here..."></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-500 text-gray-950 font-extrabold hover:opacity-90 transition-opacity shadow-lg shadow-cyan-500/20">
+                    Send Message Directly to Email
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800/50 text-center text-gray-500 text-sm">
+        <p>Copyright © 2026 Rohith S. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Three.js 3D Background & Dynamic Fetch Scripts -->
+    <script>
+        // Three.js 3D Interactive Particle & Torus Background
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Torus Knot Wireframe
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0x38bdf8, wireframe: true, transparent: true, opacity: 0.12 });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+
+        // Particle Field
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1500;
+        const posArray = new Float32Array(particlesCount * 3);
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 60;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.08, color: 0x818cf8, transparent: true, opacity: 0.5 });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        camera.position.z = 25;
+
+        // Mouse Move Reaction
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) - 0.5;
+            mouseY = (event.clientY / window.innerHeight) - 0.5;
+        });
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            torusKnot.rotation.x += 0.002;
+            torusKnot.rotation.y += 0.003;
+            particlesMesh.rotation.y -= 0.001;
+
+            camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 5 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Window Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Fetch Projects from MongoDB Backend with Fallback
+        async function fetchProjects() {
+            const container = document.getElementById('project-container');
+            try {
+                const response = await fetch('http://localhost:5000/api/projects');
+                if (!response.ok) throw new Error('Backend offline');
+                const projects = await response.json();
+                
+                container.innerHTML = '';
+                projects.forEach(project => {
+                    const card = document.createElement('div');
+                    card.className = 'glass-card p-6 rounded-3xl flex flex-col justify-between group';
+                    card.setAttribute('data-tilt', '');
+                    card.setAttribute('data-tilt-max', '8');
+                    card.setAttribute('data-tilt-speed', '400');
+                    card.innerHTML = `
+                        <div>
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-52 object-cover rounded-2xl mb-6 group-hover:scale-[1.02] transition-transform duration-300">
+                            <h3 class="text-2xl font-bold mb-3 text-white">${project.title}</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">${project.description}</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="${project.githubLink}" target="_blank" class="flex-1 py-3 text-center rounded-xl border border-cyan-500/40 text-cyan-400 font-semibold hover:bg-cyan-500 hover:text-gray-950 transition-all">GitHub</a>
+                            <a href="${project.liveDemoLink}" target="_blank" class="flex-1 py-3 text-center rounded-xl bg-cyan-500 text-gray-950 font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20">Live Demo</a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+                VanillaTilt.init(document.querySelectorAll("[data-tilt]"));
+            } catch (err) {
+                console.warn("Backend not running, rendering fallback projects.");
+                container.innerHTML = `
+                    <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500" class="w-full h-52 object-cover rounded-2xl mb-6">
+                            <h3 class="text-2xl font-bold mb-3 text-white">Resume Intelligence Screener</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Engineered a full-stack automated recruitment workspace supporting concurrent multi-file PDF resume uploads via Multer and pdf-parse.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/rohith-s2006" target="_blank" class="flex-1 py-3 text-center rounded-xl border border-cyan-500/40 text-cyan-400 font-semibold hover:bg-cyan-500 hover:text-gray-950 transition-all">GitHub</a>
+                            <a href="https://github.com/rohith-s2006" target="_blank" class="flex-1 py-3 text-center rounded-xl bg-cyan-500 text-gray-950 font-bold hover:bg-cyan-400 transition-all">Live Demo</a>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500" class="w-full h-52 object-cover rounded-2xl mb-6">
+                            <h3 class="text-2xl font-bold mb-3 text-white">ResQByte</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Engineering a full-stack web application linking food merchants with consumers using real-time inventory tracking and dynamic pricing tiers.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/rohith-s2006" target="_blank" class="flex-1 py-3 text-center rounded-xl border border-cyan-500/40 text-cyan-400 font-semibold hover:bg-cyan-500 hover:text-gray-950 transition-all">GitHub</a>
+                            <a href="https://github.com/rohith-s2006" target="_blank" class="flex-1 py-3 text-center rounded-xl bg-cyan-500 text-gray-950 font-bold hover:bg-cyan-400 transition-all">Live Demo</a>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        fetchProjects();
+    </script>
+</body>
+</html>
